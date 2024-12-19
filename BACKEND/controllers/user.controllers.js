@@ -59,6 +59,8 @@ module.exports.loginUser = async (req, res, next) => {
         // Generate a token for the user
         const token = user.generateToken();
 
+        res.cookie('token',token);
+
         res.status(200).json({ token, user });
     } catch (error) {
         console.error("Error in loginUser:", error.message);
@@ -66,3 +68,6 @@ module.exports.loginUser = async (req, res, next) => {
     }
 };
   
+module.exports.getUserProfile = async (req,res,next)=>{
+   return res.status(200).json(req.user)
+}
