@@ -24,7 +24,7 @@ const [captaindata,setcaptainData]=useState('');
   return (
     <div className=' p-7 h-screen flex justify-between flex-col '>
     <div>
-    <img className=' w-20 mb-10' src="http://pngimg.com/uploads/uber/uber_PNG24.png" alt="" />
+    <img className=' w-20 mb-7' src="http://pngimg.com/uploads/uber/uber_PNG24.png" alt="" />
      <form onSubmit={(e)=>{
       submithandler(e);
      }} 
