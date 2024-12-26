@@ -14,7 +14,7 @@ const [userdata, setuserData] = useState({});
      setuserData({
         email:email,
         password:password,
-        Username :{
+        fullname :{
         firstname:firstname,
         lastname: lastname
         }
@@ -36,7 +36,7 @@ const [userdata, setuserData] = useState({});
            }}
            className=''>
             <h3 
-           className=' text-lg mb-2 font-medium'>What's Your Name</h3>
+           className=' text-lg mb-2 font-medium'>What's our Captain's Name</h3>
           <div className='flex gap-4 mb-6 '> 
             <input 
             value={firstname}
@@ -53,7 +53,7 @@ const [userdata, setuserData] = useState({});
             className=' bg-[#eeeeee] w-1/2 px-4 py-2 rounded text-lg border placeholder:text-base ' placeholder='Last name' type="text" />
           </div>
            <h3 
-           className=' text-lg mb-2 font-medium'>What's Your Email</h3>
+           className=' text-lg mb-2 font-medium'>What's our Caption's Email</h3>
            <input 
            value={email}
            onChange={(e)=>{

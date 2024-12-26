@@ -16,12 +16,12 @@ const [userdata, setuserData] = useState({});
      setuserData({
         email:email,
         password:password,
-        Username :{
+        fullname :{
         firstname:firstname,
         lastname: lastname
         }
      })
-    console.log(userdata);
+    
     
      setEmail('');
      setPassword('');
