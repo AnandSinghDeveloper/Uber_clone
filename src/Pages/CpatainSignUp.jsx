@@ -68,7 +68,7 @@ const [userdata, setuserData] = useState({});
            }}
            required className=' bg-[#eeeeee] w-full mb-6 px-4 py-2 rounded text-lg border placeholder:text-base ' placeholder='password' type="password" />
     
-           <button type='submit' className='bg-black text-white w-full mb-6 px-4 py-2 rounded text-lg font-semibold '>Login</button>
+           <button type='submit' className='bg-black text-white w-full mb-6 px-4 py-2 rounded text-lg font-semibold '>Create Account</button>
             
            <p>Alreafy have a account? <Link to='/captain-login' className=' text-blue-500 text-base text-center'> Login here</Link></p>
            </form>

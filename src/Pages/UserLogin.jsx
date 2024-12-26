@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router'
+import { Link, Navigate } from 'react-router'
+import axios from "axios";
+import  { UserDataContext } from '../Context/UserContext';
 
 
 const UserLogin = () => {
@@ -10,10 +12,10 @@ const UserLogin = () => {
 
    const submithandler = (e)=>{
      e.preventDefault();
-     setuserData({
+    const userData={
       email : email,
       password:password
-     });
+     };
 
      console.log(userdata);
      

@@ -4,6 +4,7 @@ import UserLogin from "./Pages/UserLogin"
 import UserSignUp from "./Pages/UserSignUp"
 import CaptainLogin from "./Pages/CaptainLogin"
 import CpatainSignUp from "./Pages/CpatainSignUp"
+import HomeScreen from "./Pages/HomeScreen"
 
 
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/Signup" element={<UserSignUp/>}/>
         <Route path="/captain-login" element={<CaptainLogin/>}/>
         <Route path="/captain-signup" element={<CpatainSignUp/>}/>
+        <Route path="/HomeScreen" element={<HomeScreen/>}/>
       </Routes>  
     </>
   )
