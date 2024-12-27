@@ -6,6 +6,7 @@ import CaptainLogin from "./Pages/CaptainLogin"
 import CpatainSignUp from "./Pages/CpatainSignUp"
 import HomeScreen from "./Pages/HomeScreen"
 import UserProtectedWrapper from "./Pages/UserProtectedWrapper"
+import Userlogout from "./Pages/Userlogout"
 
 
 
@@ -24,7 +25,14 @@ function App() {
             <HomeScreen/>
           </UserProtectedWrapper>
         }/>
+        <Route path="/user/logout" element={
+          <UserProtectedWrapper>
+            <Userlogout/>
+          </UserProtectedWrapper>
+        }/>
       </Routes>  
+        
+      
     </>
   )
 }
