@@ -8,6 +8,10 @@ const CpatainSignUp = () => {
 const [ password,setPassword]=useState('');
 const [ firstname,setFirstname]=useState('');
 const [ lastname,setLastname]=useState('');
+const [vehiclecolor, setVehiclecolor]=useState('');
+const [vehicleplate,setVehicleplate]=useState('');
+const [vehiclecapacity,setVehicleCapacity]=useState('');
+const [vehicleType,setVehicleType]=useState('');
 const [userdata, setuserData] = useState({});
   const submithandler = (e)=>{
      e.preventDefault();
@@ -17,6 +21,13 @@ const [userdata, setuserData] = useState({});
         fullname :{
         firstname:firstname,
         lastname: lastname
+        },
+        vehicle : {
+          vehicleType : vehicleType,
+          vehiclecapacity: vehiclecapacity,
+          vehiclecolor: vehiclecolor,
+          vehicleplate : vehicleplate
+
         }
      })
     console.log(userdata);
@@ -67,6 +78,46 @@ const [userdata, setuserData] = useState({});
             setPassword(e.target.value)
            }}
            required className=' bg-[#eeeeee] w-full mb-6 px-4 py-2 rounded text-lg border placeholder:text-base ' placeholder='password' type="password" />
+
+          <h3 className=' text-lg mb-2 font-medium'>Vehicle</h3>
+
+           <div className='flex gap-4 mb-6 flex-wrap '> 
+            <div className='flex gap-4'>
+              <input 
+            value={vehiclecolor}
+            onChange={(e)=>{
+              setVehiclecolor(e.target.value)
+            }}
+           required className=' bg-[#eeeeee] w-1/2 px-4 py-2 rounded text-lg border placeholder:text-base ' placeholder='vehicle-color' type="text" />
+
+           <input   
+           value={vehicleplate}
+           onChange={(e)=>{
+            setVehicleplate(e.target.value)
+           }}                            
+            className=' bg-[#eeeeee] w-1/2 px-4 py-2 rounded text-lg border placeholder:text-base ' placeholder='vehicle-plate' type="text" />
+            </div>
+            <div className=' flex gap-4'>
+              <input 
+            value={vehiclecapacity}
+            onChange={(e)=>{
+              setVehicleCapacity(e.target.value)
+            }}
+           required className=' bg-[#eeeeee] w-1/2 px-4 py-2 rounded text-lg border placeholder:text-base ' placeholder='vehicle-capacity' type="number" />
+
+          <select
+            value={vehicleType}
+              onChange={(e) => {
+                   setVehicleType(e.target.value);
+             }}
+                className="bg-[#eeeeee] w-1/2 px-4 py-2 rounded text-lg border placeholder:text-base">
+
+                <option value="Car">Car</option>
+                <option value="Motorcycle">Motorcycle</option>
+                <option value="Auto">Auto</option>
+         </select>
+            </div>
+          </div>
     
            <button type='submit' className='bg-black text-white w-full mb-6 px-4 py-2 rounded text-lg font-semibold '>Create Account</button>
             

@@ -25,7 +25,7 @@ function App() {
             <HomeScreen/>
           </UserProtectedWrapper>
         }/>
-        <Route path="/user/logout" element={
+        <Route path="/logout" element={
           <UserProtectedWrapper>
             <Userlogout/>
           </UserProtectedWrapper>
