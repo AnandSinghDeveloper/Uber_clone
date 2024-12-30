@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { CaptainDataContext } from '../Context/CaptainContext';
+import axios from 'axios';
 
 
 
@@ -12,10 +14,14 @@ const [vehiclecolor, setVehiclecolor]=useState('');
 const [vehicleplate,setVehicleplate]=useState('');
 const [vehiclecapacity,setVehicleCapacity]=useState('');
 const [vehicleType,setVehicleType]=useState('');
-const [userdata, setuserData] = useState({});
-  const submithandler = (e)=>{
+// const [captaindata, setcaptainData] = useState({});
+
+  const { captain, setCaptain}= React.useContext(CaptainDataContext);
+  const navigate = useNavigate()
+ 
+  const submithandler = async (e)=>{
      e.preventDefault();
-     setuserData({
+  const  captainData ={
         email:email,
         password:password,
         fullname :{
@@ -23,14 +29,22 @@ const [userdata, setuserData] = useState({});
         lastname: lastname
         },
         vehicle : {
-          vehicleType : vehicleType,
-          vehiclecapacity: vehiclecapacity,
-          vehiclecolor: vehiclecolor,
-          vehicleplate : vehicleplate
+          vehicleType: vehicleType,
+          capacity: vehiclecapacity,
+          color: vehiclecolor,
+          plate : vehicleplate
 
         }
-     })
-    console.log(userdata);
+     }
+
+        const response = await axios.post("http://localhost:4000/captains/register" ,captainData);
+
+        if(response === 201){
+          const data = response.data
+          setCaptain(data.captain)
+          localStorage.setItem('token', data.token)
+          navigate("/Captain-Home")
+        }
     
      setEmail('');
      setPassword('');
@@ -116,9 +130,10 @@ const [userdata, setuserData] = useState({});
              }}
                 className="bg-[#eeeeee] w-1/2 px-3 py-1 rounded text-lg  placeholder:text-base">
 
-                <option  value="Car">Car</option>
-                <option value="Motorcycle">Motorcycle</option>
-                <option value="Auto">Auto</option>
+                <option value='Car'>Car</option>
+                <option value='Motorcycle'>Motorcycle</option>
+
+                <option value='Auto'>Auto</option>
                 
          </select>
             </div>
