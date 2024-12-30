@@ -15,9 +15,9 @@ const [vehicleplate,setVehicleplate]=useState('');
 const [vehiclecapacity,setVehicleCapacity]=useState('');
 const [vehicleType,setVehicleType]=useState('');
 // const [captaindata, setcaptainData] = useState({});
-
+    const navigate= useNavigate()
   const { captain, setCaptain}= React.useContext(CaptainDataContext);
-  const navigate = useNavigate()
+ 
  
   const submithandler = async (e)=>{
      e.preventDefault();
@@ -37,14 +37,17 @@ const [vehicleType,setVehicleType]=useState('');
         }
      }
 
-        const response = await axios.post("http://localhost:4000/captains/register" ,captainData);
-
-        if(response === 201){
-          const data = response.data
-          setCaptain(data.captain)
-          localStorage.setItem('token', data.token)
-          navigate("/Captain-Home")
-        }
+     try {
+      const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/register`, captainData);
+      if (response.status === 201) {
+        const data = response.data;
+        setCaptain(data.captain);
+        localStorage.setItem('token', data.token);
+        navigate('/Captain-Home'); 
+      }
+    } catch (error) {
+      console.error('Error during submission:', error);
+    }
     
      setEmail('');
      setPassword('');
