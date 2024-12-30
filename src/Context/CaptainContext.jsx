@@ -1,9 +1,28 @@
-import React from 'react'
+import React, { createContext, useState } from 'react'
 
-const CaptainContext = () => {
+export const CaptainDataContext = createContext();
+
+const CaptainContext = ({children}) => {
+   const [captain , setCaptain]= useState({
+    email : '',
+    fullname : {
+      firstname : '',
+      lastname : ''
+    },
+    vehicle : {
+      vehicleType : '',
+      vehiclecapacity : '',
+      vehicleplate : '',
+      vehiclecolor : ''
+    }
+   })
+ 
+
   return (
     <div>
-      
+      <CaptainDataContext.Provider value={{captain,setCaptain}}>
+        {children}
+      </CaptainDataContext.Provider>
     </div>
   )
 }

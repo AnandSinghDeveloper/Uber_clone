@@ -36,6 +36,10 @@ const [userdata, setuserData] = useState({});
      setPassword('');
      setFirstname('');
      setLastname('');
+     setVehicleCapacity('');
+     setVehiclecolor('');
+     setVehicleplate('')
+     setVehicleType('')
   }
      
   return (
@@ -110,11 +114,12 @@ const [userdata, setuserData] = useState({});
               onChange={(e) => {
                    setVehicleType(e.target.value);
              }}
-                className="bg-[#eeeeee] w-1/2 px-4 py-2 rounded text-lg border placeholder:text-base">
+                className="bg-[#eeeeee] w-1/2 px-3 py-1 rounded text-lg  placeholder:text-base">
 
-                <option value="Car">Car</option>
+                <option  value="Car">Car</option>
                 <option value="Motorcycle">Motorcycle</option>
                 <option value="Auto">Auto</option>
+                
          </select>
             </div>
           </div>
@@ -125,7 +130,7 @@ const [userdata, setuserData] = useState({});
            </form>
         </div>
     
-          <div>
+          <div className='pb-3' >
              <p className='text-xs '>This site is Protected bt CAPTCHA and the , <span className=' underline font-medium '>Google Privcy Policy</span> and <span className=' underline font-medium '>Terams and Service Apply</span></p>
              </div>
     
