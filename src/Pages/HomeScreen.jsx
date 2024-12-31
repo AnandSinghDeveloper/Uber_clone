@@ -1,7 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FaCaretUp } from "react-icons/fa6";
 
 const HomeScreen = () => {
+   const [pickup , setPickup]= useState('');
+   const [destination , setDestination] = useState('');
+
+  const submithandler = (e)=>{
+    e.preventDefault();
+  }
+  
   return (
     <div className=' h-screen relative'>
         
@@ -18,9 +25,23 @@ const HomeScreen = () => {
             <div className=' flex justify-center  rotate-0'>  <  FaCaretUp/> </div>
             <h4 className=' text-2xl font-semibold'> Find Your Trip</h4>
             <div className="line h-12 w-1 rounded top-[45%] bg-gray-800 absolute left-10 "></div>
-             <form >
-                 <input className=' w-full bg-[#eeeeee] px-8 py-3 text-base rounded mt-[5vw]' type="text" placeholder=' Add your pick-up location' />
-                 <input className='w-full bg-[#eeeeee] px-8 py-3 text-base rounded mt-[3vw]' type="text" placeholder=' Enter your destination ' />
+             <form 
+             onSubmit={(e)=>{
+              submithandler(e)
+             }}
+             >
+                 <input 
+                   value={pickup}
+                   onChange={(e)=>{
+                     setPickup(e.target.value)  
+                   }}
+                 className=' w-full bg-[#eeeeee] px-8 py-3 text-base rounded mt-[5vw]' type="text" placeholder=' Add your pick-up location' />
+                 <input 
+                  value={destination}
+                  onChange={(e)=>{
+                     setDestination(e.target.value)
+                  }}
+                 className='w-full bg-[#eeeeee] px-8 py-3 text-base rounded mt-[3vw]' type="text" placeholder=' Enter your destination ' />
              </form>
             </div>
             <div className=' h-[70%] bg-slate-700 hidden'>
