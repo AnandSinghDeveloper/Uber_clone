@@ -18,22 +18,28 @@ const HomeScreen = () => {
   useGSAP(function(){
      if(panalOpen){
       gsap.to(panalref.current,{
-        height : '70%'
-        
+        height : '70%',
+        padding : '20px',
+        display : 'inline-block'
       })
       gsap.to(panacloselref.current,{
-        rotate : '180%'
+        rotate : '180%',
+        opacity : '1'
       })
      }else{
       gsap.to(panalref.current,{
-        height : '0'
+        height : '0',
+        display : 'none'
+        
         
       })
       gsap.to(panacloselref.current,{
-        rotate : '0%'
+        rotate : '0%',
+        opacity : '0'
+        
       })
      }
-  },[panalOpen])
+  },[panalOpen,panacloselref])
   
   return (
     <div className=' h-screen relative'>
@@ -48,7 +54,7 @@ const HomeScreen = () => {
        
           
             <div className=' h-[30%] pt-5  pl-5 pr-5 bg-white relative rounded-tr-xl  rounded-tl-xl'>
-            <div ref={panacloselref} onClick={()=>{setPanalOpen(false)}} className=' flex justify-center  rotate-0'>  < RiArrowUpWideFill/> </div>
+            <div ref={panacloselref} onClick={()=>{setPanalOpen(false)}} className=' flex justify-center  rotate-0 opacity-0 '>  < RiArrowUpWideFill/> </div>
             <h4 className=' text-2xl font-semibold'> Find Your Trip</h4>
             <div className="line h-12 w-1 rounded top-[45%] bg-gray-800 absolute left-10 "></div>
              <form 
@@ -72,7 +78,7 @@ const HomeScreen = () => {
                  className='w-full bg-[#eeeeee] px-8 py-3 text-base rounded mt-[3vw]' type="text" placeholder=' Enter your destination ' />
              </form>
             </div>
-            <div ref={panalref}  className=' bg-[#eeeeee]  '>
+            <div ref={panalref}  className=' bg-white hidden  '>
                 <LocationPanal/>
             </div>
           </div>
