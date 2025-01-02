@@ -5,6 +5,8 @@ import gsap from 'gsap';
 import LocationPanal from '../Components/LocationPanal';
 import ConfirmRide from '../Components/ConfirmRide';
 import VehiclePanal from '../Components/VehiclePanal';
+import LookingForDriver from '../Components/LookingForDriver';
+import WaittingForDriver from '../Components/WaittingForDriver';
 
 const HomeScreen = () => {
    const [pickup , setPickup]= useState('');
@@ -12,11 +14,15 @@ const HomeScreen = () => {
    const [panalOpen , setPanalOpen] = useState(false);
    const [vehiclePanalOpen,setvehiclePanalOpen]=useState(false);
    const [ confirmRidePanal , setConfirmRidePanal] = useState(false);
+   const [vehicleFound,setVehicleFound]=useState(false);
+   const [waittingDriver,setWaittingDriver]=useState(false)
    const panalref = useRef(null);
    const panacloselref = useRef(null);
    const searchlocation = useRef(null);
    const vehiclePanalOpenRef = useRef(null);
    const confirmRidePanalRef = useRef(null);
+   const vehicleFoundRef = useRef(null);
+   const WaittingForDriverRef = useRef( null)
   
 
   const submithandler = (e)=>{
@@ -81,18 +87,42 @@ const HomeScreen = () => {
       })
     }
   },[confirmRidePanal])
+
+  useGSAP(function(){
+    if(waittingDriver){
+      gsap.to(WaittingForDriverRef.current,{
+        transform : 'translateY(0)'
+      })
+    }else{
+      gsap.to(WaittingForDriverRef.current,{
+        transform : 'translateY(100%)'
+      })
+    }
+  },[waittingDriver])
+
+  useGSAP(function(){
+    if(vehicleFound){
+      gsap.to(vehicleFoundRef.current,{
+        transform : 'translateY(0)'
+      })
+    }else{
+      gsap.to(vehicleFoundRef.current,{
+        transform : 'translateY(100%)'
+      })
+    }
+  },[vehicleFound])
   
   
   return (
     <div className=' h-screen relative overflow-hidden'>
         
-          <img className=' w-[20vw] absolute left-[5vw] top-[5vw]' src="https://freelogopng.com/images/all_img/1659761100uber-logo-png.png" alt="" />
+      <img className=' w-[20vw] absolute left-[5vw] top-[5vw]' src="https://freelogopng.com/images/all_img/1659761100uber-logo-png.png" alt="" />
 
-          <div  className=' w-screen h-screen'>
+        <div  className=' w-screen h-screen'>
                <img className=' w-full h-full object-cover' src="https://miro.medium.com/v2/resize:fit:1400/0*gwMx05pqII5hbfmX.gif" alt="Map image" />
-          </div>
+        </div>
 
-          <div  className=' w-full absolute flex flex-col justify-end h-screen top-0 '>
+          <div  className=' w-full absolute flex flex-col justify-end h-screen bottom-0 '>
        
           
             <div ref={searchlocation} className=' h-[35%] pt-5  pl-5 pr-5 bg-white relative rounded-tr-xl  rounded-tl-xl'>
@@ -129,7 +159,13 @@ const HomeScreen = () => {
 
           </div>
           <div ref={confirmRidePanalRef} className=' fixed w-full z-10 bg-white   px-3 pt-[0.5rem] pb-6 bottom-0 -translate-x-full rounded-tr-lg rounded-tl-lg'>
-             <ConfirmRide/>
+             <ConfirmRide setConfirmRidePanal={setConfirmRidePanal} setvehiclePanalOpen={setvehiclePanalOpen} setVehicleFound={setVehicleFound} />
+          </div>
+          <div ref={vehicleFoundRef} className=' fixed w-full z-10 bg-white   px-3 pt-[0.5rem] pb-6 bottom-0 -translate-x-full rounded-tr-lg rounded-tl-lg'>
+               <LookingForDriver setVehicleFound={setVehicleFound}/>
+          </div>
+          <div ref={WaittingForDriverRef}  className=' fixed w-full z-10 bg-white   px-3 pt-[0.5rem] pb-6 bottom-0 -translate-x-full  rounded-tr-lg rounded-tl-lg'>
+             <WaittingForDriver setWaittingDriver={setWaittingDriver} /> 
           </div>
     </div>
   )

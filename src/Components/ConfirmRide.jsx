@@ -5,10 +5,10 @@ import { FaSquare } from "react-icons/fa6";
 import { IoMdCash } from "react-icons/io";
 import { MdOutlineCurrencyRupee } from 'react-icons/md';
 
-const ConfirmRide = () => {
+const ConfirmRide = (props) => {
   return (
     <div>
-      <div onClick={()=>{ props.setvehiclePanalOpen(false) }} className=' w-full flex  justify-center p-3 '><RiArrowDownWideLine style={{height : '30px' , width : '30px', color : ' rgb(209 213 219 / var(--tw-border-opacity, 1))'}}/></div>
+      <div onClick={()=>{ props.setConfirmRidePanal(false) }} className=' w-full flex  justify-center p-3 '><RiArrowDownWideLine style={{height : '30px' , width : '30px', color : ' rgb(209 213 219 / var(--tw-border-opacity, 1))'}}/></div>
       <h3 className=' capitalize text-2xl font-semibold mb-3'> confiom your ride </h3>
 
       <div className=' flex flex-col justify-between items-center '>
@@ -37,7 +37,11 @@ const ConfirmRide = () => {
            </div>
         </div>
         
-        <button className=' w-full bg-green-600 p-2 rounded-lg text-white font-semibold mt-4 '>Confirm</button>
+        <button onClick={()=>{
+          props.setvehiclePanalOpen(false)
+          props.setConfirmRidePanal(false)
+          props.setVehicleFound(true)
+        }} className=' w-full bg-green-600 p-2 rounded-lg text-white font-semibold mt-4 '>Confirm</button>
       </div>
 
     </div>
