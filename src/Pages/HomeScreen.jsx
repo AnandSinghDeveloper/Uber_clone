@@ -3,19 +3,21 @@ import { RiArrowUpWideFill } from "react-icons/ri";
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import LocationPanal from '../Components/LocationPanal';
-import { FaUserLarge } from "react-icons/fa6";
-import { MdOutlineCurrencyRupee } from 'react-icons/md';
-import { RiArrowDownWideLine } from "react-icons/ri";
+import ConfirmRide from '../Components/ConfirmRide';
+import VehiclePanal from '../Components/VehiclePanal';
 
 const HomeScreen = () => {
    const [pickup , setPickup]= useState('');
    const [destination , setDestination] = useState('');
    const [panalOpen , setPanalOpen] = useState(false);
+   const [vehiclePanalOpen,setvehiclePanalOpen]=useState(false);
+   const [ confirmRidePanal , setConfirmRidePanal] = useState(false);
    const panalref = useRef(null);
    const panacloselref = useRef(null);
    const searchlocation = useRef(null);
    const vehiclePanalOpenRef = useRef(null);
-   const [vehiclePanalOpen,setvehiclePanalOpen]=useState(false)
+   const confirmRidePanalRef = useRef(null);
+  
 
   const submithandler = (e)=>{
     e.preventDefault();
@@ -66,6 +68,20 @@ const HomeScreen = () => {
       })
     }
   },[vehiclePanalOpen])
+
+
+  useGSAP(function(){
+    if(confirmRidePanal){
+      gsap.to(confirmRidePanalRef.current,{
+        transform : 'translateY(0)'
+      })
+    }else{
+      gsap.to(confirmRidePanalRef.current,{
+        transform : 'translateY(100%)'
+      })
+    }
+  },[confirmRidePanal])
+  
   
   return (
     <div className=' h-screen relative overflow-hidden'>
@@ -79,7 +95,7 @@ const HomeScreen = () => {
           <div  className=' w-full absolute flex flex-col justify-end h-screen top-0 '>
        
           
-            <div ref={searchlocation} className=' h-[30%] pt-5  pl-5 pr-5 bg-white relative rounded-tr-xl  rounded-tl-xl'>
+            <div ref={searchlocation} className=' h-[35%] pt-5  pl-5 pr-5 bg-white relative rounded-tr-xl  rounded-tl-xl'>
             <div ref={panacloselref} onClick={()=>{setPanalOpen(false)}} className=' flex justify-center  rotate-0 opacity-0 '>  < RiArrowUpWideFill style={{width : '30px' , height : '30px', color :  "rgb(209 213 219 / var(--tw-border-opacity, 1))" }} /> </div>
             <h4 className=' text-2xl font-semibold'> Find Your Trip</h4>
             <div className="line h-12 w-1 rounded top-[50%] bg-gray-800 absolute left-10 "></div>
@@ -108,46 +124,12 @@ const HomeScreen = () => {
                 <LocationPanal setvehiclePanalOpen={setvehiclePanalOpen} setPanalOpen={setPanalOpen}  />
             </div>
           </div>
-          <div ref={vehiclePanalOpenRef} className=' fixed w-full z-10 bg-white px-3 py-6 bottom-0 -translate-x-full'>
-            <div onClick={()=>{ setvehiclePanalOpen(false) }} className=' w-full flex  justify-center p-3 '><RiArrowDownWideLine style={{height : '30px' , width : '30px', color : ' rgb(209 213 219 / var(--tw-border-opacity, 1))'}}/></div>
-            <h3 className=' capitalize text-2xl font-semibold mb-3'> choose a vehicle</h3>
-             <div className=' flex items-center  justify-between w-full mb-2 active:border-[3px] border-[3px] border-gray-200 active:border-black rounded-xl p-3  '>
-                <img className=' h-14' src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_538,w_956/v1688398971/assets/29/fbb8b0-75b1-4e2a-8533-3a364e7042fa/original/UberSelect-White.png" alt=" Car" />
-                
-                  <div className=' w-1/2'> 
-                       <h4 className=' font-semibold text-xl'> UberGo <span className=' inline-block text-base ml-2'> <FaUserLarge/>  </span> <span className=' text-base font-normal'>4</span> </h4>
-                       <h5 className='font-medium text-sm'>2 mins away</h5>
-                       <p className=' font-normal text-xs text-gray-600'> Affordable , compact ride</p>
-                  </div>
-                  <h2 className=' font-semibold text-xl flex items-center text-green-700'> <span className=' inline-block' > <MdOutlineCurrencyRupee style={{color : 'green' }}/></span> 193.20</h2>
+          <div ref={vehiclePanalOpenRef} className=' fixed w-full z-10 bg-white px-3 pt-[0.5rem] pb-6 bottom-0 -translate-x-full rounded-tr-lg rounded-tl-lg'>
+             <VehiclePanal setvehiclePanalOpen={setvehiclePanalOpen} setConfirmRidePanal={setConfirmRidePanal}/>
 
-             </div>
-             
-             <div className=' flex items-center  justify-between w-full mb-2 active:border-[3px] border-[3px] border-gray-200 active:border-black  rounded-xl p-3  '>
-                <img className=' h-14' src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_368,w_552/v1649231091/assets/2c/7fa194-c954-49b2-9c6d-a3b8601370f5/original/Uber_Moto_Orange_312x208_pixels_Mobile.png" alt=" Car" />
-                
-                  <div className=' w-1/2'> 
-                       <h4 className=' font-semibold text-xl'> Moto <span className=' inline-block text-base ml-2'> <FaUserLarge/>  </span> <span className=' text-base font-normal'>1</span> </h4>
-                       <h5 className='font-medium text-sm'>3 mins away</h5>
-                       <p className=' font-normal text-xs text-gray-600'> Affordable , motoecyicle rides</p>
-                  </div>
-                  <h2 className=' font-semibold text-xl flex items-center text-green-700'> <span className=' inline-block' > <MdOutlineCurrencyRupee style={{color : 'green' }}/></span> 65.00</h2>
-
-             </div>
-
-
-             <div className=' flex items-center  justify-between w-full mb-2 active:border-[3px] border-[3px] border-gray-200 active:border-black  rounded-xl p-3  '>
-                <img className=' h-14' src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,h_368,w_552/v1648431773/assets/1d/db8c56-0204-4ce4-81ce-56a11a07fe98/original/Uber_Auto_558x372_pixels_Desktop.png" alt=" Car" />
-                
-                  <div className=' w-1/2'> 
-                       <h4 className=' font-semibold text-xl'> Auto <span className=' inline-block text-base ml-2'> <FaUserLarge/>  </span> <span className=' text-base font-normal'>3</span> </h4>
-                       <h5 className='font-medium text-sm'>4 mins away</h5>
-                       <p className=' font-normal text-xs text-gray-600'> Affordable , auto rides</p>
-                  </div>
-                  <h2 className=' font-semibold text-xl flex items-center text-green-700'> <span className=' inline-block' > <MdOutlineCurrencyRupee style={{color : 'green' }}/></span> 102.50</h2>
-
-             </div>
-
+          </div>
+          <div ref={confirmRidePanalRef} className=' fixed w-full z-10 bg-white   px-3 pt-[0.5rem] pb-6 bottom-0 -translate-x-full rounded-tr-lg rounded-tl-lg'>
+             <ConfirmRide/>
           </div>
     </div>
   )
