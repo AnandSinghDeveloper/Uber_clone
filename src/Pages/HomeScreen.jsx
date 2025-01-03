@@ -128,7 +128,7 @@ const HomeScreen = () => {
             <div ref={searchlocation} className=' h-[35%] pt-5  pl-5 pr-5 bg-white relative rounded-tr-xl  rounded-tl-xl'>
             <div ref={panacloselref} onClick={()=>{setPanalOpen(false)}} className=' flex justify-center  rotate-0 opacity-0 '>  < RiArrowUpWideFill style={{width : '30px' , height : '30px', color :  "rgb(209 213 219 / var(--tw-border-opacity, 1))" }} /> </div>
             <h4 className=' text-2xl font-semibold'> Find Your Trip</h4>
-            <div className="line h-12 w-1 rounded top-[50%] bg-gray-800 absolute left-10 "></div>
+            <div className="line h-14 w-1 rounded top-[33vw] bg-gray-800 absolute left-10 "></div>
              <form 
              onSubmit={(e)=>{
               submithandler(e)

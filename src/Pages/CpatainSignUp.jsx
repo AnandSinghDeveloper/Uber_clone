@@ -148,7 +148,7 @@ const [vehicleType,setVehicleType]=useState('');
            </form>
         </div>
     
-          <div className='pb-3' >
+          <div className='pb-3 mt-7' >
              <p className='text-xs '>This site is Protected bt CAPTCHA and the , <span className=' underline font-medium '>Google Privcy Policy</span> and <span className=' underline font-medium '>Terams and Service Apply</span></p>
              </div>
     
