@@ -3,9 +3,45 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 import RidePopup from "../Components/RidePopup";
 import CaptainDetails from "../Components/CaptainDetails";
-
+import { useRef, useState } from "react";
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import ConfirmRidepopUp from "../Components/ConfirmRidepopUp";
 
 const CaptainHome = () => {
+  const [ridePopUp,setRidePopUp]=useState(true)
+  const [confimRidePanal,setConfimRidePanal]=useState(false)
+  const ridePopUpRef = useRef(null)
+  const confimRidePanalref = useRef(null)
+
+
+
+  useGSAP(function(){
+    if(ridePopUp){
+      gsap.to(ridePopUpRef.current,{
+        transform : 'translateY(0)'
+      })
+    }else{
+      gsap.to(ridePopUpRef.current,{
+        transform : 'translateY(100%)'
+      })
+    }
+  },[ridePopUp])
+
+  useGSAP(function(){
+    if(confimRidePanal){
+      gsap.to(confimRidePanalref.current,{
+        transform : 'translateY(0)'
+      })
+    }else{
+      gsap.to(confimRidePanalref.current,{
+        transform : 'translateY(100%)'
+      })
+    }
+  },[confimRidePanal])
+
+
+
   return (
     <div className=' h-screen overflow-hidden'>
     <div>
@@ -21,9 +57,13 @@ const CaptainHome = () => {
              <CaptainDetails/>
           </div>
     
-    <div className=' fixed w-full z-10 bg-white   px-3 pt-[0.5rem] pb-6 bottom-0   rounded-tr-lg rounded-tl-lg'>
-             <RidePopup/>
+    <div ref={ridePopUpRef} className=' fixed w-full z-10 bg-white   px-3 pt-[0.5rem] pb-6 bottom-0 translate-y-full  rounded-tr-lg rounded-tl-lg'>
+             <RidePopup setRidePopUp={setRidePopUp} setConfimRidePanal={setConfimRidePanal}/>
           </div>
+
+    <div ref={confimRidePanalref} className=' fixed w-full z-10 bg-white h-screen  px-3 pt-[0.5rem] pb-6 bottom-0 translate-y-full  rounded-tr-lg rounded-tl-lg'>
+             <ConfirmRidepopUp setRidePopUp={setRidePopUp} setConfimRidePanal={setConfimRidePanal} />
+      </div>
   </div>
   )
 }

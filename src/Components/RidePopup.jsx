@@ -5,10 +5,10 @@ import { FaSquare } from "react-icons/fa6";
 import { IoMdCash } from "react-icons/io";
 import { MdOutlineCurrencyRupee } from 'react-icons/md';
 
-const RidePopup = () => {
+const RidePopup = (props) => {
   return (
     <div>
-          <div onClick={()=>{ props.setConfirmRidePanal(false) }} className=' w-full flex  justify-center p-3 '><RiArrowDownWideLine style={{height : '30px' , width : '30px', color : ' rgb(209 213 219 / var(--tw-border-opacity, 1))'}}/></div>
+          <div onClick={()=>{ props.setRidePopUp(false) }} className=' w-full flex  justify-center p-3 '><RiArrowDownWideLine style={{height : '30px' , width : '30px', color : ' rgb(209 213 219 / var(--tw-border-opacity, 1))'}}/></div>
           <h3 className=' capitalize text-2xl font-semibold mb-3'> new ride available ! </h3>
 
           <div className=' flex items-center justify-between p-5 h-16 w-full bg-blue-400 rounded-lg mt-6 mb-4'>
@@ -46,9 +46,11 @@ const RidePopup = () => {
             </div>
             
             <button onClick={()=>{  
+               props.setConfimRidePanal(true)
             }} className=' w-full bg-green-600 p-2 rounded-lg text-white font-semibold mt-4 capitalize '>Confirm ride</button>
              <button onClick={()=>{  
-            }} className=' w-full bg-gray-300 p-2 rounded-lg text-gray-700 font-semibold mt-4  capitalize '>ignore ride</button>
+              props.setRidePopUp(false)
+            }} className=' w-full bg-gray-300 p-2 rounded-lg text-zinc-700 font-semibold mt-4  capitalize '>ignore ride</button>
           </div>
     
         </div>

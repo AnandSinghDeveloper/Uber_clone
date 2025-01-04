@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { IoMdTime } from "react-icons/io";
 import { MdEventNote } from "react-icons/md";
 import { MdOutlineCurrencyRupee } from 'react-icons/md';
 import { GiSpeedometer } from "react-icons/gi";
 
+
 const CaptainDetails = () => {
+    
+    
+
   return (
     <div className=' h-2/5 w-full p-5 flex flex-col  justify-evenly  '>
              <div className=' flex justify-between items-center p-3 '>
