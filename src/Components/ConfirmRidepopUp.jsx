@@ -46,7 +46,10 @@ const ConfirmRidepopUp = (props) => {
                 </div>
                 
                 <button onClick={()=>{  
-    
+                   props.setCaptainRideing(true)
+                   props.setRidePopUp(false)
+                  
+
                 }} className=' w-full bg-green-600 p-2 rounded-lg text-white font-semibold mt-4 capitalize '>Confirm ride</button>
                  <button onClick={()=>{  
                   props.setRidePopUp(false)
