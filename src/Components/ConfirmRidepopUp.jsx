@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { RiArrowDownWideLine } from 'react-icons/ri'
 import { MdMyLocation } from "react-icons/md";
 import { FaSquare } from "react-icons/fa6";
@@ -6,6 +6,15 @@ import { IoMdCash } from "react-icons/io";
 import { MdOutlineCurrencyRupee } from 'react-icons/md';
 
 const ConfirmRidepopUp = (props) => {
+
+      const [OTP,setOTP]=useState('')
+      console.log(OTP);
+      
+
+       const submithandler = (e)=>{
+        e.preventDefault();
+       }
+
   return (
     <div>
               <div onClick={()=>{ props.setConfimRidePanal(false) }} className=' w-full flex  justify-center p-3 '><RiArrowDownWideLine style={{height : '30px' , width : '30px', color : ' rgb(209 213 219 / var(--tw-border-opacity, 1))'}}/></div>
@@ -44,17 +53,35 @@ const ConfirmRidepopUp = (props) => {
                     </div>    
                    </div>
                 </div>
-                
-                <button onClick={()=>{  
-                   props.setCaptainRideing(true)
-                   props.setRidePopUp(false)
-                  
 
-                }} className=' w-full bg-green-600 p-2 rounded-lg text-white font-semibold mt-4 capitalize '>Confirm ride</button>
-                 <button onClick={()=>{  
-                  props.setRidePopUp(false)
-                  props.setConfimRidePanal(false)
-                }} className=' w-full bg-red-500 p-2 rounded-lg text-gray-100 font-semibold mt-4  capitalize '>cancal ride</button>
+                <form 
+                  onSubmit={(e)=>{
+                    submithandler(e)
+                  }}
+                className='w-[95%]'>
+                  
+                  <input
+                  value={OTP}
+                  onChange={(e)=>{
+                       setOTP(e.target.value)
+                  }}
+                  className=' w-full bg-[#eeeeee] px-8 py-3 text-base rounded mt-[5vw]'  type="text" placeholder='Enter your OTP' />
+                <div className='w-full mt-10'>
+                    <button onClick={()=>{  
+                       props.setCaptainRideing(true)
+                       props.setRidePopUp(false)
+                       props.setConfimRidePanal(false)
+                       }} className=' w-full bg-green-600 p-2 rounded-lg text-white font-semibold mt-4 capitalize '>Confirm ride</button>
+
+                    <button onClick={()=>{  
+                       props.setRidePopUp(false)
+                      props.setConfimRidePanal(false)
+  
+                      }} className=' w-full bg-red-500 p-2 rounded-lg text-gray-100 font-semibold mt-4  capitalize '>cancal ride</button>
+                 </div>
+                </form>
+                
+                
               </div>
         
             </div>

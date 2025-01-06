@@ -1,9 +1,28 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { RiArrowUpWideFill } from "react-icons/ri";
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import FinishRide from '../Components/FinishRide';
 
-const CaptainRideing = (props) => {
+const CaptainRideing = ({setCaptainRideing}) => {
+
+    const [finishRide,setFinishRide]=useState(false)
+    const finishRideREf=useRef(null)
+          
+    useGSAP(function(){
+      if(finishRide){
+        gsap.to(finishRideREf.current,{
+          transform : 'translateY(0)'
+        })
+      }else{
+        gsap.to(finishRideREf.current,{
+          transform : 'translateY(100%)'
+        })
+      }
+    },[finishRide])
+
   return (
     <div className=' h-screen overflow-hidden'>
      <div className=''>
@@ -17,12 +36,16 @@ const CaptainRideing = (props) => {
     </div>
        
        <div className='h-screen w-screen bg-yellow-400  p-3 rounded-tr-lg rounded-tl-lg z-10 '>
-        <div  onClick={()=>{}} className=' flex justify-center  rotate-0  '>  < RiArrowUpWideFill style={{width : '30px' , height : '30px', color :  "zinc" }} /> </div>
+        <div  onClick={()=>{setFinishRide(true)}} className=' flex justify-center  rotate-0  '>  < RiArrowUpWideFill style={{width : '30px' , height : '30px', color :  "zinc" }} /> </div>
          <div className=' flex justify-between items-center  '>
           <h4 className=' text-xl font-medium capitalize'> 4 km away</h4>
-          <button className=' w-[50%] bg-green-600 p-2 rounded-lg text-white font-semibold mt-4 capitalize'> complete ride</button>
+          <button onClick={()=>{setFinishRide(true)}} className=' w-[50%] bg-green-600 p-2 rounded-lg text-white font-semibold mt-4 capitalize'> complete ride</button>
          </div>
        </div>
+
+       <div ref={finishRideREf} className=' fixed w-full z-10 bg-white   px-3 pt-[0.5rem] pb-6 bottom-0 translate-y-full  rounded-tr-lg rounded-tl-lg'>
+             <FinishRide setFinishRide={setFinishRide} setCaptainRideing={setCaptainRideing} />
+          </div>
     
     </div>
   )
