@@ -1,28 +1,26 @@
 const axios = require('axios');
+require('dotenv').config(); // Load API key from .env
 
-module.exports.getAddressCoordinate = async (address)=>{
-     const apiKey = process.env.GOOGLE_MAP_API ;
-     const url = `https://maps.googleapis.com/map/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
+module.exports.getAddressCoordinate = async (address) => {
+    const apiKey = process.env.GOOGLE_MAP_API; // Load API key securely
 
-     try {
+    // Use the correct Google Maps API URL
+    const url = `https://maps.gomaps.pro/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
-      const response = await axios.get(url);
-      if(response.data.status === 'OK'){
-        const location = response.data.results[0].geometry.location ;
-    
-        return {
-          ltd: location.lat,
-          lng: location.lng 
+    try {
+        const response = await axios.get(url);
+
+        if (response.data.status === 'OK') {
+            const location = response.data.results[0].geometry.location;
+            return {
+                lat: location.lat,
+                lng: location.lng
+            };
+        } else {
+            throw new Error(response.data.error_message || 'Unable to retrieve coordinates');
         }
-      }else{
-        throw new Error('Enable to reach coodinates')
-      }
-    
-        
     } catch (error) {
-      console.error(error);
-      
-      throw error ;
+        console.error('Error fetching coordinates:', error.message);
+        throw error;
     }
-}
-
+};
