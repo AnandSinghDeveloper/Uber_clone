@@ -1,6 +1,7 @@
 const { FaMotorcycle } = require('react-icons/fa');
 const ridemodel = require('../Models/ride.models');
 const mapService = require('./maps.service');
+const crypto = require('crypto');
 
 
 async function getFare(pickUP,destination) {
@@ -38,6 +39,15 @@ async function getFare(pickUP,destination) {
 
 }
 
+function getOTP(num){
+  function genrateOTP(num){
+    const OTP = crypto.randomInt(Math.pow(10,num-1) , Math.pow(10,num)).toString();
+
+    return OTP ;
+  }
+  return genrateOTP(num)
+}
+
 module.exports.CreateRide = async ({
   user , pickUP , destination , vehicleType
 })=>{
@@ -51,6 +61,7 @@ module.exports.CreateRide = async ({
          user,
          pickUP,
          destination,
+         OTP : getOTP(6),
          fare : fare[vehicleType]
      })
 

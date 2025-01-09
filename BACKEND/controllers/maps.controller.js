@@ -5,7 +5,7 @@ module.exports.getCoordinate = async (req , res , next)=>{
 const {address} = req.query ;
 const errors = validationResult(req)
 if(!errors.isEmpty()){
-  return res.status(400).json
+  return res.status(400).json({errors : errors.array()})
 }
 
 try {
@@ -22,7 +22,7 @@ module.exports.getDistanceTime = async (req , res , next )=>{
   try {
     const errors = validationResult(req)
     if(!errors.isEmpty()){
-      return res.status(400).json
+      return res.status(400).json({errors : errors.array()})
     }
    
     const {origin,destination}=req.query ;
@@ -43,7 +43,7 @@ try {
 
   const errors = validationResult(req)
   if(!errors.isEmpty()){
-    return res.status(400).json
+    return res.status(400).json({errors : errors.array()})
   }
 
   const {input}=req.query ;
