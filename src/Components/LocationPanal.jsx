@@ -23,10 +23,10 @@ const LocationPanal = ({ suggestions, setVehiclePanel, setPanelOpen, setPickup, 
             }} 
             className=' flex items-center p-4 active:border-2 active:border-black border-2 border-gray-50 rounded-xl gap-4 justify-start my-3'>
             <h2 className=' bg-[#eeeeee] w-[3.2rem] h-[2.5rem] rounded-full flex justify-center items-center '>
-              <  MdLocationPin style={{width: '25px', height : '25px'}}/>
+              <MdLocationPin style={{width: '25px', height : '25px'}}/>
             </h2>
                <h4 className=' font-medium text-[16px] capitalize'>
-                  {elm}
+                  {elm.description}
                </h4>
           </div>  
           })

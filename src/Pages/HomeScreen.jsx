@@ -49,6 +49,7 @@ const HomeScreen = () => {
       
        throw error
     }
+    
   }
 
 const handleDestinationChange = async (e) => {
