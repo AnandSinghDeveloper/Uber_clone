@@ -43,6 +43,8 @@ const HomeScreen = () => {
           
         })
         setPickupSuggestions(response.data)
+        console.log(response.data.description);
+        
       
     } catch(error){
       console.log(error);
@@ -168,10 +170,10 @@ const handleDestinationChange = async (e) => {
           <div  className=' w-full absolute flex flex-col justify-end h-screen bottom-0 '>
        
           
-            <div ref={searchlocation} className=' h-[35%] pt-5  pl-5 pr-5 bg-white relative rounded-tr-xl  rounded-tl-xl'>
+            <div ref={searchlocation} className=' h-[35%] pt-9  pl-5 pr-5 bg-white relative rounded-tr-xl  rounded-tl-xl'>
             <div ref={panacloselref} onClick={()=>{setPanelOpen(false)}} className=' flex justify-center  rotate-0 opacity-0 '>  < RiArrowUpWideFill style={{width : '30px' , height : '30px', color :  "rgb(209 213 219 / var(--tw-border-opacity, 1))" }} /> </div>
             <h4 className=' text-2xl font-semibold'> Find Your Trip</h4>
-            <div className="line h-14 w-1 rounded top-[33vw] bg-gray-800 absolute left-10 "></div>
+            <div className="line h-14 w-1 rounded top-[36vw] bg-gray-800 absolute left-10 "></div>
              <form 
              onSubmit={(e)=>{
               submithandler(e)
@@ -197,6 +199,11 @@ const handleDestinationChange = async (e) => {
                     handleDestinationChange
                   }
                  className='w-full bg-[#eeeeee] px-8 py-3 text-base rounded mt-[3vw]' type="text" placeholder=' Enter your destination ' />
+                <button onClick={()=>{
+                   setvehiclePanalOpen(true)
+                   setPanelOpen(false)
+                }} className=' capitalize w-full bg-zinc-800 text-white font-semibold text-lg rounded mt-4 py-1'>Find trip</button>
+                 
              </form>
             </div>
             <div ref={panalref}  className=' bg-white   '>

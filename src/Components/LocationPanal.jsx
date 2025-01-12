@@ -19,7 +19,7 @@ const LocationPanal = ({ suggestions, setVehiclePanel, setPanelOpen, setPickup, 
         {
           suggestions.map((elm ,key)=>{
             return <div key={key} onClick={()=>{
-             handleSuggestionClick(elm);
+             handleSuggestionClick(elm.description);
             }} 
             className=' flex items-center p-4 active:border-2 active:border-black border-2 border-gray-50 rounded-xl gap-4 justify-start my-3'>
             <h2 className=' bg-[#eeeeee] w-[3.2rem] h-[2.5rem] rounded-full flex justify-center items-center '>
