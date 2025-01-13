@@ -29,10 +29,10 @@ module.exports.getFare = async (req , res ,next)=>{
     return res.status(400).json({errors : errors.array()})
   }
   
-  const { pickup,destination } = req.query ;
+  const { pickUP,destination } = req.query ;
 
   try {
-   const fare = await rideService.getFare(pickup,destination);
+   const fare = await rideService.getFare(pickUP,destination);
 
    return res.status(200).json(fare) ;
     

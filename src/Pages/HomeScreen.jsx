@@ -23,6 +23,7 @@ const HomeScreen = () => {
    const [vehicleFound,setVehicleFound]=useState(false);
    const [waittingDriver,setWaittingDriver]=useState(false)
    const [fare,setFare]=useState({});
+   const [vehicleType,setvehicleType]=useState(null)
    const panalref = useRef(null);
    const panacloselref = useRef(null);
    const searchlocation = useRef(null);
@@ -90,6 +91,23 @@ const handleDestinationChange = async (e) => {
    console.log(response.data);
    
 
+ }
+
+ const CreateRide = async ()=>{
+    const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/rides/create`,{
+      pickup,
+      destination,
+      vehicleType,
+    },
+      { headers : {
+        Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+
+
+    })
+
+    console.log(response.data);
+    
  }
   
 
@@ -236,11 +254,21 @@ const handleDestinationChange = async (e) => {
             </div>
           </div>
           <div ref={vehiclePanalOpenRef} className=' fixed w-full z-10 bg-white px-3 pt-[0.5rem] pb-6 bottom-0 -translate-x-full rounded-tr-lg rounded-tl-lg'>
-             <VehiclePanal setvehiclePanalOpen={setvehiclePanalOpen} fare={fare} setConfirmRidePanal={setConfirmRidePanal}/>
+             <VehiclePanal setvehiclePanalOpen={setvehiclePanalOpen}
+               SelactVehicle ={setvehicleType}
+              fare={fare}
+               setConfirmRidePanal={setConfirmRidePanal}/>
 
           </div>
           <div ref={confirmRidePanalRef} className=' fixed w-full z-10 bg-white   px-3 pt-[0.5rem] pb-6 bottom-0 -translate-x-full rounded-tr-lg rounded-tl-lg'>
-             <ConfirmRide setConfirmRidePanal={setConfirmRidePanal} setvehiclePanalOpen={setvehiclePanalOpen} setVehicleFound={setVehicleFound} />
+             <ConfirmRide setConfirmRidePanal={setConfirmRidePanal}
+              setvehiclePanalOpen={setvehiclePanalOpen}
+              CreateRide={CreateRide}
+              pickup={pickup}
+              fare ={fare}
+              vehicleType ={vehicleType}
+              destination={destination}
+               setVehicleFound={setVehicleFound} />
           </div>
           <div ref={vehicleFoundRef} className=' fixed w-full z-10 bg-white   px-3 pt-[0.5rem] pb-6 bottom-0 -translate-x-full rounded-tr-lg rounded-tl-lg'>
                <LookingForDriver setVehicleFound={setVehicleFound}/>
