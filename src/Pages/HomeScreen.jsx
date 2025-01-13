@@ -22,6 +22,7 @@ const HomeScreen = () => {
    const [ confirmRidePanal , setConfirmRidePanal] = useState(false);
    const [vehicleFound,setVehicleFound]=useState(false);
    const [waittingDriver,setWaittingDriver]=useState(false)
+   const [fare,setFare]=useState({});
    const panalref = useRef(null);
    const panacloselref = useRef(null);
    const searchlocation = useRef(null);
@@ -43,7 +44,7 @@ const HomeScreen = () => {
           
         })
         setPickupSuggestions(response.data)
-        console.log(response.data.description);
+        
         
       
     } catch(error){
@@ -68,6 +69,28 @@ const handleDestinationChange = async (e) => {
         throw error
     }
 }
+
+ const  FindTrip = async ()=>{
+  if(!pickup||!destination){
+    setvehiclePanalOpen(false)
+  setPanelOpen(true)
+  alert('Please enter your Trip')
+  }else{ 
+    setvehiclePanalOpen(true)
+  setPanelOpen(false)
+  }
+   
+   const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/rides/get-fare`,{
+    params:{pickup,destination},
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    }
+   })
+    setFare(response.data)
+   console.log(response.data);
+   
+
+ }
   
 
   const submithandler = (e)=>{
@@ -199,10 +222,7 @@ const handleDestinationChange = async (e) => {
                     handleDestinationChange
                   }
                  className='w-full bg-[#eeeeee] px-8 py-3 text-base rounded mt-[3vw]' type="text" placeholder=' Enter your destination ' />
-                <button onClick={()=>{
-                   setvehiclePanalOpen(true)
-                   setPanelOpen(false)
-                }} className=' capitalize w-full bg-zinc-800 text-white font-semibold text-lg rounded mt-4 py-1'>Find trip</button>
+                <button onClick={FindTrip} className=' capitalize w-full bg-zinc-800 text-white font-semibold text-lg rounded mt-4 py-1'>Find trip</button>
                  
              </form>
             </div>
@@ -216,7 +236,7 @@ const handleDestinationChange = async (e) => {
             </div>
           </div>
           <div ref={vehiclePanalOpenRef} className=' fixed w-full z-10 bg-white px-3 pt-[0.5rem] pb-6 bottom-0 -translate-x-full rounded-tr-lg rounded-tl-lg'>
-             <VehiclePanal setvehiclePanalOpen={setvehiclePanalOpen} setConfirmRidePanal={setConfirmRidePanal}/>
+             <VehiclePanal setvehiclePanalOpen={setvehiclePanalOpen} fare={fare} setConfirmRidePanal={setConfirmRidePanal}/>
 
           </div>
           <div ref={confirmRidePanalRef} className=' fixed w-full z-10 bg-white   px-3 pt-[0.5rem] pb-6 bottom-0 -translate-x-full rounded-tr-lg rounded-tl-lg'>

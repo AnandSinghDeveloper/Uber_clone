@@ -16,7 +16,7 @@ const VehiclePanal = (props) => {
                        <h5 className='font-medium text-sm'>2 mins away</h5>
                        <p className=' font-normal text-xs text-gray-600'> Affordable , compact ride</p>
                   </div>
-                  <h2 className=' font-semibold text-xl flex items-center text-green-700'> <span className=' inline-block' > <MdOutlineCurrencyRupee style={{color : 'green' }}/></span> 193.20</h2>
+                  <h2 className=' font-semibold text-xl flex items-center text-green-700'> <span className=' inline-block' > <MdOutlineCurrencyRupee style={{color : 'green' }}/></span>{props.fare.Car}</h2>
 
              </div>
              
@@ -28,7 +28,7 @@ const VehiclePanal = (props) => {
                        <h5 className='font-medium text-sm'>3 mins away</h5>
                        <p className=' font-normal text-xs text-gray-600'> Affordable , motoecyicle rides</p>
                   </div>
-                  <h2 className=' font-semibold text-xl flex items-center text-green-700'> <span className=' inline-block' > <MdOutlineCurrencyRupee style={{color : 'green' }}/></span> 65.00</h2>
+                  <h2 className=' font-semibold text-xl flex items-center text-green-700'> <span className=' inline-block' > <MdOutlineCurrencyRupee style={{color : 'green' }}/></span> {props.fare.Motorcycle}</h2>
 
              </div>
 
@@ -41,7 +41,7 @@ const VehiclePanal = (props) => {
                        <h5 className='font-medium text-sm'>4 mins away</h5>
                        <p className=' font-normal text-xs text-gray-600'> Affordable , auto rides</p>
                   </div>
-                  <h2 className=' font-semibold text-xl flex items-center text-green-700'> <span className=' inline-block' > <MdOutlineCurrencyRupee style={{color : 'green' }}/></span> 102.50</h2>
+                  <h2 className=' font-semibold text-xl flex items-center text-green-700'> <span className=' inline-block' > <MdOutlineCurrencyRupee style={{color : 'green' }}/></span>{props.fare.Auto}</h2>
 
              </div>
     </div>
