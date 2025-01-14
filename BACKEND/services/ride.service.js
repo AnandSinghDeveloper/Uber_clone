@@ -69,3 +69,6 @@ module.exports.CreateRide = async ({
 
      return ride ;
 }
+
+console.log(getFare);
+
