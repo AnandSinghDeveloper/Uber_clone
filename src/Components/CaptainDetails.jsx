@@ -1,13 +1,15 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { IoMdTime } from "react-icons/io";
 import { MdEventNote } from "react-icons/md";
 import { MdOutlineCurrencyRupee } from 'react-icons/md';
 import { GiSpeedometer } from "react-icons/gi";
+import { CaptainDataContext } from '../Context/CaptainContext';
 
 
 const CaptainDetails = () => {
     
-    
+    const {captain} = useContext(CaptainDataContext)
+   
 
   return (
     <div className=' h-2/5 w-full p-5 flex flex-col  justify-evenly  '>
@@ -18,7 +20,8 @@ const CaptainDetails = () => {
                           <img className=" h-10 w-10 rounded-full object-cover  " src="https://t3.ftcdn.net/jpg/03/05/77/64/360_F_305776453_t7SUl48g63zLsyODxd60aj6EcWR9avVK.jpg" alt="" />
                            <div>
                            <h3 className=' ml-3 text-xl font-medium '>
-                                  Bhavisya
+                                 Anand
+
                             </h3>
                            </div>
                          </div>

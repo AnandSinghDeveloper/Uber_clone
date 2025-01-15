@@ -12,7 +12,7 @@ import WaittingForDriver from '../Components/WaittingForDriver'
 
 
 const HomeScreen = () => {
-   const [pickup , setPickup]= useState('');
+   const [pickUP , setPickup]= useState('');
    const [destination , setDestination] = useState('');
    const [pickupSuggestions , setPickupSuggestions] = useState([]);
    const [destinationSuggestions , setDestinationSuggestions] = useState([]);
@@ -72,7 +72,7 @@ const handleDestinationChange = async (e) => {
 }
 
  const  FindTrip = async ()=>{
-  if(!pickup||!destination){
+  if(!pickUP||!destination){
     setvehiclePanalOpen(false)
   setPanelOpen(true)
   alert('Please enter your Trip')
@@ -82,7 +82,7 @@ const handleDestinationChange = async (e) => {
   }
    
    const response = await axios.get(`${import.meta.env.VITE_BASE_URL}/rides/get-fare`,{
-    params:{pickup,destination},
+    params:{pickUP,destination},
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`
     }
@@ -95,7 +95,7 @@ const handleDestinationChange = async (e) => {
 
  const CreateRide = async ()=>{
     const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/rides/create`,{
-      pickup,
+      pickUP,
       destination,
       vehicleType,
     },
@@ -225,7 +225,7 @@ const handleDestinationChange = async (e) => {
                   setPanelOpen(true)
                   setActiveField('pickup')
                  }}
-                   value={pickup}
+                   value={pickUP}
                    onChange={
                     handlePickupChange
                    }
@@ -264,14 +264,20 @@ const handleDestinationChange = async (e) => {
              <ConfirmRide setConfirmRidePanal={setConfirmRidePanal}
               setvehiclePanalOpen={setvehiclePanalOpen}
               CreateRide={CreateRide}
-              pickup={pickup}
+              pickup={pickUP}
               fare ={fare}
               vehicleType ={vehicleType}
               destination={destination}
                setVehicleFound={setVehicleFound} />
           </div>
-          <div ref={vehicleFoundRef} className=' fixed w-full z-10 bg-white   px-3 pt-[0.5rem] pb-6 bottom-0 -translate-x-full rounded-tr-lg rounded-tl-lg'>
-               <LookingForDriver setVehicleFound={setVehicleFound}/>
+          <div ref={vehicleFoundRef} className=' fixed w-full z-10 bg-white    pt-[0.5rem] pb-6 bottom-0 -translate-x-full rounded-tr-lg rounded-tl-lg'>
+               <LookingForDriver setVehicleFound={setVehicleFound}
+                pickup={pickUP}
+                fare ={fare}
+                vehicleType ={vehicleType}
+                destination={destination}
+               />
+
           </div>
           <div ref={WaittingForDriverRef}  className=' fixed w-full z-10 bg-white   px-3 pt-[0.5rem] pb-6 bottom-0 -translate-x-full  rounded-tr-lg rounded-tl-lg'>
              <WaittingForDriver setWaittingDriver={setWaittingDriver} /> 

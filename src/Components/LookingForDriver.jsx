@@ -6,6 +6,9 @@ import { IoMdCash } from "react-icons/io";
 import { MdOutlineCurrencyRupee } from 'react-icons/md';
 
 const LookingForDriver = (props) => {
+  
+
+
   return (
       <div>
           <div onClick={()=>{props.setVehicleFound(false) }} className=' w-full flex  justify-center p-3 '><RiArrowDownWideLine style={{height : '30px' , width : '30px', color : ' rgb(209 213 219 / var(--tw-border-opacity, 1))'}}/></div>
@@ -17,21 +20,21 @@ const LookingForDriver = (props) => {
                <div className='flex items-center gap-5 p-3 border-b-2'>
                   <MdMyLocation style={{width : '20px' , height : '20px', marginRight : '-10px' }}/>
                  <div>
-                  <h3 className=' font-semibold text-lg'>562/11A</h3>
-                  <p className=' capitalize -mt-1 text-sm text-gray-600'> baktawarpur delhi-36 </p>
+                  <h3 className=' font-semibold text-lg capitalize'>PickUp location</h3>
+                  <p className=' capitalize -mt-1 text-sm text-gray-600'> {props.pickup} </p>
                 </div>    
                </div>
                <div className='flex items-center gap-5 p-3 border-b-2'>
                  <FaSquare style={{width : '15px' , height : '15px', marginRight : '-10px' }}/>
                  <div>
-                  <h3 className=' font-semibold text-lg'>562/11A</h3>
-                  <p className=' capitalize -mt-1 text-sm text-gray-600'> baktawarpur delhi-36 </p>
+                  <h3 className=' font-semibold text-lg capitalize'>Destination</h3>
+                  <p className=' capitalize -mt-1 text-sm text-gray-600'> {props.destination} </p>
                 </div>    
                </div>
                <div className='flex  items-center gap-5 p-3'>
                 <IoMdCash style={{width : '20px' , height : '20px', marginRight : '-10px' }}/>
                 <div>
-                  <h3 className=' font-semibold text-lg text-green-600'><span className=' inline-block' > <MdOutlineCurrencyRupee style={{color : 'green', marginRight : '-5px', marginBottom : '-3px' }}/></span> 193.20</h3>
+                  <h3 className=' font-semibold text-lg text-green-600'><span className=' inline-block' > <MdOutlineCurrencyRupee style={{color : 'green', marginRight : '-5px', marginBottom : '-3px' }}/></span> {props.fare[props.vehicleType]}</h3>
                   <p className=' capitalize -mt-1 text-sm text-gray-600'> cash cash </p>
                 </div>    
                </div>
