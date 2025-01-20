@@ -9,8 +9,10 @@ import { CaptainDataContext } from '../Context/CaptainContext';
 const CaptainDetails = () => {
     
     const {captain} = useContext(CaptainDataContext)
+    
    
 
+console.log(captain);
   return (
     <div className=' h-2/5 w-full p-5 flex flex-col  justify-evenly  '>
              <div className=' flex justify-between items-center p-3 '>
@@ -20,7 +22,7 @@ const CaptainDetails = () => {
                           <img className=" h-10 w-10 rounded-full object-cover  " src="https://t3.ftcdn.net/jpg/03/05/77/64/360_F_305776453_t7SUl48g63zLsyODxd60aj6EcWR9avVK.jpg" alt="" />
                            <div>
                            <h3 className=' ml-3 text-xl font-medium '>
-                                 Anand
+                                 {captain.fullname.firstname+""+captain.fullname.lastname}
 
                             </h3>
                            </div>

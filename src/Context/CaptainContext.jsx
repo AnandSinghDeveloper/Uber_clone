@@ -18,6 +18,7 @@ const CaptainContext = ({children}) => {
    })
 
 
+   console.log(captain);
    
    
  

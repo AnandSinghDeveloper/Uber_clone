@@ -2,6 +2,9 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { CaptainDataContext } from '../Context/CaptainContext';
 import axios from 'axios';
+import { Dotenv } from 'dotenv';
+
+
 
 
 
@@ -35,13 +38,20 @@ const [vehicleType,setVehicleType]=useState('');
           plate : vehicleplate
 
         }
+
+       
      }
+
+    
+     
 
      try {
       const response = await axios.post(`${import.meta.env.VITE_BASE_URL}/captains/register`, captainData);
       if (response.status === 201) {
         const data = response.data;
-        setCaptain(data.captain);
+        console.log(data);
+        
+        setCaptain(data.Captain);
       
         
         localStorage.setItem('token', data.token);

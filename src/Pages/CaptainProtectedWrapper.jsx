@@ -22,7 +22,13 @@ const CaptainProtectedWrapper =  ({children}) => {
     },
    }).then(response =>{
     if(response === 200){
-      setCaptain(response.data.captain)
+
+     
+      
+      setCaptain(response)
+
+
+
       setIsloding(false)
     }
    }).catch(err =>{
