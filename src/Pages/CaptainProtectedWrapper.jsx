@@ -25,7 +25,7 @@ const CaptainProtectedWrapper =  ({children}) => {
 
      
       
-      setCaptain(response)
+      setCaptain(response.data)
 
 
 
