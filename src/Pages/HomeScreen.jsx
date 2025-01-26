@@ -8,6 +8,10 @@ import ConfirmRide from '../Components/ConfirmRide';
 import VehiclePanal from '../Components/VehiclePanal';
 import LookingForDriver from '../Components/LookingForDriver';
 import WaittingForDriver from '../Components/WaittingForDriver'
+import { SocketContext } from '../Context/Socketcontext';
+import { useContext } from 'react';
+import { UserDataContext} from '../Context/UserContext'
+import { useEffect } from 'react';
 
 
 
@@ -32,6 +36,28 @@ const HomeScreen = () => {
    const vehicleFoundRef = useRef(null);
    const WaittingForDriverRef = useRef( null);
 
+
+   const { socket } = useContext(SocketContext)
+   const { user } = useContext(UserDataContext)
+
+   useEffect(() => {
+       socket.emit("join", { userType: "user", userId: user._id })
+   }, [ user ])
+
+
+   socket.on('ride-confirmed', ride => {
+
+
+    setVehicleFound(false)
+    setWaittingDriver(true)
+    setRide(ride)
+})
+
+socket.on('ride-started', ride => {
+    console.log("ride")
+    setWaittingDriver(false)
+    navigate('/riding', { state: { ride } }) // Updated navigate to include ride data
+})
 
 
    const handlePickupChange = async (e) => {

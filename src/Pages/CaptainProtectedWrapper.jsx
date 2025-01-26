@@ -16,13 +16,14 @@ const CaptainProtectedWrapper =  ({children}) => {
      }
    },[token]) 
    
-   axios.get(`${import.meta.env.VITE_BASE_URL}/captains/profile`,{
+     axios.get(`${import.meta.env.VITE_BASE_URL}/captains/profile`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
    }).then(response =>{
     if(response === 200){
 
+     console.log(response);
      
       
       setCaptain(response.data)

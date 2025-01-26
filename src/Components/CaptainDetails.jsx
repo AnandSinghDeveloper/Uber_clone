@@ -9,10 +9,13 @@ import { CaptainDataContext } from '../Context/CaptainContext';
 const CaptainDetails = () => {
     
     const {captain} = useContext(CaptainDataContext)
+
+    
+    
     
    
 
-console.log(captain);
+// console.log(captain);
   return (
     <div className=' h-2/5 w-full p-5 flex flex-col  justify-evenly  '>
              <div className=' flex justify-between items-center p-3 '>

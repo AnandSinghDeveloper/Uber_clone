@@ -79,8 +79,9 @@ module.exports.loginCaptain = async (req,res,next)=>{
     res.status(500).json({ message: "Internal server error" });
 }
 };
-module.exports.getCaptainProfile= async(req,res,next)=>{
-  return res.status(200).json(req.captain)
+module.exports.getCaptainProfile = async (req, res, next) => {
+  const { captain } = req;
+  res.status(200).json(captain);
 };
 
 module.exports.logoutCaptain = async (req,res,next)=>{
