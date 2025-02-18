@@ -10,6 +10,9 @@ const CaptainDetails = () => {
     
     const {captain} = useContext(CaptainDataContext)
 
+    console.log(captain);
+    
+
     
     
     
@@ -25,7 +28,7 @@ const CaptainDetails = () => {
                           <img className=" h-10 w-10 rounded-full object-cover  " src="https://t3.ftcdn.net/jpg/03/05/77/64/360_F_305776453_t7SUl48g63zLsyODxd60aj6EcWR9avVK.jpg" alt="" />
                            <div>
                            <h3 className=' ml-3 text-xl font-medium '>
-                                 {captain.fullname.firstname+""+captain.fullname.lastname}
+                                 {/* {captain.fullname.firstname+""+captain.fullname.lastname} */}
 
                             </h3>
                            </div>

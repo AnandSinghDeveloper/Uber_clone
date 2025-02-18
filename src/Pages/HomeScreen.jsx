@@ -40,24 +40,29 @@ const HomeScreen = () => {
    const { socket } = useContext(SocketContext)
    const { user } = useContext(UserDataContext)
 
+ 
+   
+
    useEffect(() => {
        socket.emit("join", { userType: "user", userId: user._id })
+       console.log(user);
+       
    }, [ user ])
 
 
-   socket.on('ride-confirmed', ride => {
+//    socket.on('ride-confirmed', ride => {
 
 
-    setVehicleFound(false)
-    setWaittingDriver(true)
-    setRide(ride)
-})
+//     setVehicleFound(false)
+//     setWaittingDriver(true)
+//     setRide(ride)
+// })
 
-socket.on('ride-started', ride => {
-    console.log("ride")
-    setWaittingDriver(false)
-    navigate('/riding', { state: { ride } }) // Updated navigate to include ride data
-})
+// socket.on('ride-started', ride => {
+//     console.log("ride")
+//     setWaittingDriver(false)
+//     navigate('/riding', { state: { ride } }) 
+// })
 
 
    const handlePickupChange = async (e) => {
