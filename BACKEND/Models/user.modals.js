@@ -1,37 +1,42 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken'); 
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
-const userSchema = mongoose.Schema({
-  fullname: {
-    firstname: {
+const userSchema = mongoose.Schema(
+  {
+    fullname: {
+      firstname: {
+        type: String,
+        required: true,
+        minlength: [3, "First name must be at least 3 characters long"],
+      },
+      lastname: {
+        type: String,
+        minlength: [3, "Last name must be at least 3 characters long"],
+      },
+    },
+    email: {
       type: String,
       required: true,
-      minlength: [3, 'First name must be at least 3 characters long']
+      unique: true,
+      minlength: [5, "Email must be at least 5 characters long"],
     },
-    lastname: {
+    password: {
       type: String,
-      minlength: [3, 'Last name must be at least 3 characters long']
-    }
+      required: true,
+      select: false,
+    },
+    socketID: {
+      type: String,
+    },
   },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-    minlength: [5, 'Email must be at least 5 characters long']
-  },
-  password: {
-    type: String,
-    required: true,
-    select: false
-  },
-  socketID: {
-    type: String
-  }
-}, { timestamps: true });
+  { timestamps: true }
+);
 
-userSchema.methods.generateToken = function () { 
-  const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET , {expiresIn : '24h'});
+userSchema.methods.generateToken = function () {
+  const token = jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
+    expiresIn: "24h",
+  });
   return token;
 };
 
@@ -43,6 +48,6 @@ userSchema.statics.hashPassword = async (password) => {
   return await bcrypt.hash(password, 10);
 };
 
-const userModel = mongoose.model('User', userSchema);
+const userModel = mongoose.model("User", userSchema);
 
-module.exports = userModel
+module.exports = userModel;
